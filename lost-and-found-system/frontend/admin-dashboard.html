@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Lost and Found</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <!-- Dark Mode & Responsive Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <i data-feather="shield" class="h-8 w-8 text-indigo-400"></i>
+                    <span class="ml-2 text-xl font-bold text-white">Admin Panel</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="text-sm text-gray-300">Welcome, <strong id="adminName">Admin</strong></span>
+                    <button onclick="handleLogout()" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">
+                        <i data-feather="log-out" class="h-4 w-4 inline mr-1"></i>
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Menu -->
+    <div class="bg-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex space-x-4 py-2 overflow-x-auto">
+                <a href="admin-dashboard.html" class="text-white bg-gray-900 px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap">
+                    <i data-feather="home" class="h-4 w-4 inline mr-1"></i>Dashboard
+                </a>
+                <a href="admin-users.html" class="text-gray-300 hover:text-white hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap">
+                    <i data-feather="users" class="h-4 w-4 inline mr-1"></i>Users
+                </a>
+                <a href="admin-items.html" class="text-gray-300 hover:text-white hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap">
+                    <i data-feather="package" class="h-4 w-4 inline mr-1"></i>Items
+                </a>
+                <a href="admin-reports.html" class="text-gray-300 hover:text-white hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap">
+                    <i data-feather="bar-chart-2" class="h-4 w-4 inline mr-1"></i>Reports
+                </a>
+                <a href="admin-logs.html" class="text-gray-300 hover:text-white hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap">
+                    <i data-feather="activity" class="h-4 w-4 inline mr-1"></i>Logs
+                </a>
+                <a href="admin-settings.html" class="text-gray-300 hover:text-white hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap">
+                    <i data-feather="settings" class="h-4 w-4 inline mr-1"></i>Settings
+                </a>
+                <a href="index.html" class="text-gray-300 hover:text-white hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap">
+                    <i data-feather="external-link" class="h-4 w-4 inline mr-1"></i>View Site
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900">Dashboard Overview</h1>
+            <p class="mt-1 text-sm text-gray-600">System statistics and recent activity</p>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <!-- Total Users -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-blue-100">
+                        <i data-feather="users" class="h-6 w-6 text-blue-600"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm text-gray-600">Total Users</p>
+                        <p class="text-2xl font-bold text-gray-900" id="totalUsers">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lost Items -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-red-100">
+                        <i data-feather="alert-circle" class="h-6 w-6 text-red-600"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm text-gray-600">Active Lost Items</p>
+                        <p class="text-2xl font-bold text-gray-900" id="activeLost">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Found Items -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-green-100">
+                        <i data-feather="check-circle" class="h-6 w-6 text-green-600"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm text-gray-600">Unclaimed Items</p>
+                        <p class="text-2xl font-bold text-gray-900" id="unclaimedFound">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admins -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-purple-100">
+                        <i data-feather="shield" class="h-6 w-6 text-purple-600"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm text-gray-600">Administrators</p>
+                        <p class="text-2xl font-bold text-gray-900" id="totalAdmins">0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Quick Actions -->
+            <div class="bg-white rounded-lg shadow">
+                <div class="p-6 border-b border-gray-200">
+                    <h2 class="text-lg font-semibold text-gray-900">Quick Actions</h2>
+                </div>
+                <div class="p-6">
+                    <div class="grid grid-cols-2 gap-4">
+                        <a href="admin-users.html" class="flex flex-col items-center p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all">
+                            <i data-feather="users" class="h-8 w-8 text-blue-600 mb-2"></i>
+                            <span class="text-sm font-medium text-gray-700">Manage Users</span>
+                        </a>
+                        <a href="admin-items.html" class="flex flex-col items-center p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-green-500 hover:bg-green-50 transition-all">
+                            <i data-feather="package" class="h-8 w-8 text-green-600 mb-2"></i>
+                            <span class="text-sm font-medium text-gray-700">Manage Items</span>
+                        </a>
+                        <a href="admin-reports.html" class="flex flex-col items-center p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-purple-500 hover:bg-purple-50 transition-all">
+                            <i data-feather="bar-chart-2" class="h-8 w-8 text-purple-600 mb-2"></i>
+                            <span class="text-sm font-medium text-gray-700">View Reports</span>
+                        </a>
+                        <a href="admin-logs.html" class="flex flex-col items-center p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-yellow-500 hover:bg-yellow-50 transition-all">
+                            <i data-feather="activity" class="h-8 w-8 text-yellow-600 mb-2"></i>
+                            <span class="text-sm font-medium text-gray-700">Activity Logs</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="bg-white rounded-lg shadow">
+                <div class="p-6 border-b border-gray-200">
+                    <h2 class="text-lg font-semibold text-gray-900">Recent Activity</h2>
+                </div>
+                <div class="p-6">
+                    <div id="recentActivity" class="space-y-4">
+                        <div class="text-center py-4">
+                            <i data-feather="loader" class="h-6 w-6 text-gray-400 mx-auto animate-spin"></i>
+                            <p class="mt-2 text-sm text-gray-600">Loading activity...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Alerts -->
+        <div class="mt-6 bg-white rounded-lg shadow">
+            <div class="p-6 border-b border-gray-200">
+                <h2 class="text-lg font-semibold text-gray-900">System Alerts</h2>
+            </div>
+            <div id="systemAlerts" class="p-6">
+                <!-- Alerts will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:3000/api';
+        let currentUser = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+            checkAdminAuth();
+        });
+
+        async function checkAdminAuth() {
+            const token = localStorage.getItem('token');
+            
+            if (!token) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/auth/me`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    credentials: 'include'
+                });
+
+                if (!response.ok) {
+                    throw new Error('Not authenticated');
+                }
+
+                const data = await response.json();
+                if (data.success) {
+                    currentUser = data.user;
+                    
+                    // Check if user is admin
+                    if (data.user.role !== 'admin') {
+                        alert('Access denied. Admin privileges required.');
+                        window.location.href = 'student-dashboard.html';
+                        return;
+                    }
+                    
+                    document.getElementById('adminName').textContent = data.user.full_name;
+                    loadDashboardData();
+                } else {
+                    throw new Error('Authentication failed');
+                }
+            } catch (error) {
+                console.error('Auth error:', error);
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+                window.location.href = 'login.html';
+            }
+        }
+
+        async function loadDashboardData() {
+            const token = localStorage.getItem('token');
+
+            try {
+                // Load statistics
+                const statsResponse = await fetch(`${API_BASE_URL}/admin/statistics`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    credentials: 'include'
+                });
+
+                const statsData = await statsResponse.json();
+                if (statsData.success) {
+                    const stats = statsData.statistics;
+                    document.getElementById('totalUsers').textContent = stats.total_users || 0;
+                    document.getElementById('activeLost').textContent = stats.active_lost_items || 0;
+                    document.getElementById('unclaimedFound').textContent = stats.unclaimed_found_items || 0;
+                    document.getElementById('totalAdmins').textContent = stats.total_admins || 0;
+                }
+
+                // Load recent activity
+                const activityResponse = await fetch(`${API_BASE_URL}/admin/activity`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    credentials: 'include'
+                });
+
+                const activityData = await activityResponse.json();
+                if (activityData.success) {
+                    displayRecentActivity(activityData.activity);
+                }
+
+                // Generate alerts
+                generateAlerts(statsData.statistics);
+
+            } catch (error) {
+                console.error('Error loading dashboard:', error);
+            }
+        }
+
+        function displayRecentActivity(activities) {
+            const container = document.getElementById('recentActivity');
+            
+            if (!activities || activities.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-4">
+                        <i data-feather="inbox" class="h-8 w-8 text-gray-400 mx-auto"></i>
+                        <p class="mt-2 text-sm text-gray-600">No recent activity</p>
+                    </div>
+                `;
+                feather.replace();
+                return;
+            }
+
+            let html = '';
+            activities.slice(0, 5).forEach(activity => {
+                const icon = activity.type === 'lost_item' ? 'alert-circle' : 'check-circle';
+                const color = activity.type === 'lost_item' ? 'red' : 'green';
+                const timeAgo = getTimeAgo(activity.timestamp);
+
+                html += `
+                    <div class="flex items-start space-x-3">
+                        <i data-feather="${icon}" class="h-5 w-5 text-${color}-600 mt-0.5"></i>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm text-gray-900">${activity.title}</p>
+                            <p class="text-xs text-gray-500">by ${activity.user_name} • ${timeAgo}</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+            feather.replace();
+        }
+
+        function generateAlerts(stats) {
+            const container = document.getElementById('systemAlerts');
+            let alerts = [];
+
+            if (stats.active_lost_items > 20) {
+                alerts.push({
+                    type: 'warning',
+                    message: `${stats.active_lost_items} items are currently lost. Consider reviewing old items.`
+                });
+            }
+
+            if (stats.unclaimed_found_items > 15) {
+                alerts.push({
+                    type: 'info',
+                    message: `${stats.unclaimed_found_items} found items are unclaimed. Remind students to check.`
+                });
+            }
+
+            if (stats.total_admins === 1) {
+                alerts.push({
+                    type: 'warning',
+                    message: 'Only one admin account exists. Consider adding a backup admin.'
+                });
+            }
+
+            if (alerts.length === 0) {
+                container.innerHTML = `
+                    <div class="flex items-center space-x-2 text-green-700">
+                        <i data-feather="check-circle" class="h-5 w-5"></i>
+                        <span class="text-sm">All systems running smoothly!</span>
+                    </div>
+                `;
+            } else {
+                let html = '<div class="space-y-3">';
+                alerts.forEach(alert => {
+                    const colors = {
+                        warning: 'yellow',
+                        info: 'blue',
+                        error: 'red'
+                    };
+                    const color = colors[alert.type];
+                    
+                    html += `
+                        <div class="flex items-start space-x-2 p-3 bg-${color}-50 border border-${color}-200 rounded-lg">
+                            <i data-feather="alert-circle" class="h-5 w-5 text-${color}-600 mt-0.5"></i>
+                            <span class="text-sm text-${color}-700">${alert.message}</span>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+                container.innerHTML = html;
+            }
+            
+            feather.replace();
+        }
+
+        function getTimeAgo(timestamp) {
+            const now = new Date();
+            const then = new Date(timestamp);
+            const seconds = Math.floor((now - then) / 1000);
+
+            if (seconds < 60) return 'just now';
+            if (seconds < 3600) return `${Math.floor(seconds / 60)} min ago`;
+            if (seconds < 86400) return `${Math.floor(seconds / 3600)} hours ago`;
+            return `${Math.floor(seconds / 86400)} days ago`;
+        }
+
+        async function handleLogout() {
+            const token = localStorage.getItem('token');
+
+            try {
+                await fetch(`${API_BASE_URL}/auth/logout`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    credentials: 'include'
+                });
+            } catch (error) {
+                console.error('Logout error:', error);
+            }
+
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = 'login.html';
+        }
+    </script>
+    <!-- Dark Mode, Image Upload & Utilities -->
+    <script src="js/utils.js"></script>
+</body>
+</html>

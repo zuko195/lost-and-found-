@@ -1,0 +1,36 @@
+{
+  "name": "lost-and-found-backend-secure",
+  "version": "3.0.0",
+  "description": "Backend API for Lost and Found System with Production-Grade Security",
+  "main": "server-secure.js",
+  "scripts": {
+    "start": "node server-secure.js",
+    "dev": "nodemon server-secure.js",
+    "local": "node server.js"
+  },
+  "keywords": ["lost-and-found", "api", "express", "authentication", "security"],
+  "author": "Jyothi Engineering College",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "sqlite3": "^5.1.6",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "express-session": "^1.17.3",
+    "cookie-parser": "^1.4.6",
+    "express-validator": "^7.0.1",
+    "uuid": "^9.0.1",
+    "helmet": "^7.1.0",
+    "express-rate-limit": "^7.1.5",
+    "express-mongo-sanitize": "^2.2.0",
+    "xss-clean": "^0.1.4",
+    "hpp": "^0.2.3",
+    "validator": "^13.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

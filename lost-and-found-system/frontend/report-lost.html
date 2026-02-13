@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Lost Item | Lost and Found</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <!-- Dark Mode & Responsive Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- Dark Mode & Responsive Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i data-feather="box" class="h-8 w-8 text-indigo-600"></i>
+                        <span class="ml-2 text-xl font-bold text-gray-900">Lost & Found</span>
+                    </div>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <a href="index.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Home</a>
+                    <a href="report-lost.html" class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Report Lost</a>
+                    <a href="report-found.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Report Found</a>
+                    <a href="unclaimed.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Unclaimed Items</a>
+                    <a href="lost-items.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Lost Items</a>
+                </div>
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-button">
+                        <i data-feather="menu"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="sm:hidden hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="index.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Home</a>
+                <a href="report-lost.html" class="bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Report Lost</a>
+                <a href="report-found.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Report Found</a>
+                <a href="unclaimed.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Unclaimed Items</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center mb-12">
+                <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Report</h2>
+                <h1 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Lost Item Form
+                </h1>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                    Fill out the form below to report your lost item. We'll help you find it!
+                </p>
+            </div>
+
+            <div class="mt-10 sm:mt-0">
+                <div class="md:grid md:grid-cols-3 md:gap-6">
+                    <div class="md:col-span-1">
+                        <div class="px-4 sm:px-0">
+                            <h3 class="text-lg font-medium leading-6 text-gray-900">Item Information</h3>
+                            <p class="mt-1 text-sm text-gray-600">
+                                Please provide as much detail as possible about the item you lost.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mt-5 md:mt-0 md:col-span-2">
+                        <form id="lostItemForm" onsubmit="handleSubmit(event)">
+                            <div class="shadow overflow-hidden sm:rounded-md">
+                                <div class="px-4 py-5 bg-white sm:p-6">
+                                    <div class="grid grid-cols-6 gap-6">
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="item-name" class="block text-sm font-medium text-gray-700">Item Name</label>
+                                            <input type="text" name="item-name" id="item-name" autocomplete="item-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                        </div>
+
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
+                                            <select id="category" name="category" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                <option>Electronics</option>
+                                                <option>Books & Notes</option>
+                                                <option>Stationery</option>
+                                                <option>ID Cards</option>
+                                                <option>Bags & Wallets</option>
+                                                <option>Clothing</option>
+                                                <option>Keys</option>
+                                                <option>Other</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-span-6">
+                                            <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                                            <textarea id="description" name="description" rows="3" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Provide detailed description including brand, color, distinguishing marks, etc."></textarea>
+                                        </div>
+
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="date-lost" class="block text-sm font-medium text-gray-700">Date Lost</label>
+                                            <input type="date" name="date-lost" id="date-lost" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                        </div>
+
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="location" class="block text-sm font-medium text-gray-700">Location Lost</label>
+                                            <select id="location" name="location" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                <option>Main Building</option>
+                                                <option>Library</option>
+                                                <option>Cafeteria</option>
+                                                <option>Sports Complex</option>
+                                                <option>Hostel</option>
+                                                <option>Parking Area</option>
+                                                <option>Other</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="student-name" class="block text-sm font-medium text-gray-700">Your Name</label>
+                                            <input type="text" name="student-name" id="student-name" autocomplete="name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                        </div>
+
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="contact" class="block text-sm font-medium text-gray-700">Contact Number</label>
+                                            <input type="tel" name="contact" id="contact" autocomplete="tel" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                        </div>
+
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                                            <input type="email" name="email" id="email" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                        </div>
+
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="id-number" class="block text-sm font-medium text-gray-700">Student ID Number</label>
+                                            <input type="text" name="id-number" id="id-number" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                        </div>
+
+                                        <div class="col-span-6">
+                                            <div class="flex items-start">
+                                                <div class="flex items-center h-5">
+                                                    <input id="agree" name="agree" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                                                </div>
+                                                <div class="ml-3 text-sm">
+                                                    <label for="agree" class="font-medium text-gray-700">I confirm that the information provided is accurate</label>
+                                                    <p class="text-gray-500">By submitting this form, you agree to our terms of service.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                                    <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        Submit Report
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+                <div class="space-y-8 xl:col-span-1">
+                    <div class="flex items-center">
+                        <i data-feather="box" class="h-8 w-8 text-indigo-500"></i>
+                        <span class="ml-2 text-xl font-bold text-white">Lost & Found</span>
+                    </div>
+                    <p class="text-gray-300 text-base">
+                        Jyothi Engineering College
+                    </p>
+                </div>
+                <div class="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
+                    <div class="md:grid md:grid-cols-2 md:gap-8">
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">
+                                Quick Links
+                            </h3>
+                            <ul class="mt-4 space-y-4">
+                                <li>
+                                    <a href="index.html" class="text-base text-gray-400 hover:text-white">
+                                        Home
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="report-lost.html" class="text-base text-gray-400 hover:text-white">
+                                        Report Lost
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="report-found.html" class="text-base text-gray-400 hover:text-white">
+                                        Report Found
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="unclaimed.html" class="text-base text-gray-400 hover:text-white">
+                                        Unclaimed Items
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-700 pt-8">
+                <p class="text-base text-gray-400 text-center">
+                    &copy; 2023 Lost and Found, Jyothi Engineering College. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Initialize AOS and Feather Icons
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
+            });
+            feather.replace();
+        });
+    </script>
+    <!-- Dark Mode, Image Upload & Utilities -->
+    <script src="js/utils.js"></script>
+</body>
+</html>

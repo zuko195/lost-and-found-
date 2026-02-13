@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost and Found | Jyothi Engineering College</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <!-- Dark Mode & Responsive Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- Dark Mode & Responsive Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i data-feather="box" class="h-8 w-8 text-indigo-600"></i>
+                        <span class="ml-2 text-xl font-bold text-gray-900">Lost & Found</span>
+                    </div>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <a href="index.html" class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Home</a>
+                    <a href="report-lost.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Report Lost</a>
+                    <a href="report-found.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Report Found</a>
+                    <a href="unclaimed.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Unclaimed Items</a>
+                    <a href="lost-items.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Lost Items</a>
+                </div>
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-button">
+                        <i data-feather="menu"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="sm:hidden hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="index.html" class="bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Home</a>
+                <a href="report-lost.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Report Lost</a>
+                <a href="report-found.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Report Found</a>
+                <a href="unclaimed.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Unclaimed Items</a>
+                <a href="lost-items.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Lost Items</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-gradient text-white">
+        <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+                Lost and Found
+            </h1>
+            <p class="mt-6 text-xl max-w-3xl mx-auto">
+                A platform for Jyothi Engineering College students to report and recover items.
+            </p>
+            <div class="mt-10 flex justify-center space-x-4">
+                <a href="report-lost.html" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-700 bg-white hover:bg-indigo-50">
+                    Report Lost Item
+                </a>
+                <a href="report-found.html" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-800 bg-opacity-80 hover:bg-opacity-100">
+                    Report Found Item
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">How It Works</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Simple steps to recover your belongings
+                </p>
+            </div>
+
+            <div class="mt-10">
+                <div class="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-8 md:gap-y-10">
+                    <div class="relative" data-aos="fade-up">
+                        <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                            <i data-feather="alert-circle"></i>
+                        </div>
+                        <p class="ml-16 text-lg leading-6 font-medium text-gray-900">1. Report Lost Item</p>
+                        <p class="mt-2 ml-16 text-base text-gray-500">
+                            Fill out a simple form with details about your lost item to help others identify it.
+                        </p>
+                    </div>
+
+                    <div class="relative" data-aos="fade-up" data-aos-delay="100">
+                        <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                            <i data-feather="eye"></i>
+                        </div>
+                        <p class="ml-16 text-lg leading-6 font-medium text-gray-900">2. Check Unclaimed Items</p>
+                        <p class="mt-2 ml-16 text-base text-gray-500">
+                            Browse through items that have been found on campus to see if yours has been recovered.
+                        </p>
+                    </div>
+
+                    <div class="relative" data-aos="fade-up" data-aos-delay="200">
+                        <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                            <i data-feather="check-circle"></i>
+                        </div>
+                        <p class="ml-16 text-lg leading-6 font-medium text-gray-900">3. Claim Your Item</p>
+                        <p class="mt-2 ml-16 text-base text-gray-500">
+                            Contact the finder through provided details to arrange for item return.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Items Section -->
+    <div class="bg-gray-50 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center mb-10">
+                <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Recently Found</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Items waiting to be claimed
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                    These items were recently found on campus. Check if any belong to you!
+                </p>
+            </div>
+
+            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <!-- Item 1 -->
+                <div class="bg-white rounded-lg shadow overflow-hidden transition-all duration-300 card-hover" data-aos="fade-up">
+                    <img class="h-48 w-full object-cover" src="http://static.photos/technology/640x360/1" alt="Found item">
+                    <div class="p-6">
+                        <h3 class="text-lg font-medium text-gray-900">Smartphone</h3>
+                        <p class="mt-1 text-sm text-gray-500">Found: 2 days ago</p>
+                        <p class="mt-2 text-gray-600">Black iPhone 13 with blue case, found near the cafeteria.</p>
+                        <div class="mt-4 flex items-center">
+                            <div class="flex-shrink-0">
+                                <i data-feather="user" class="h-5 w-5 text-gray-400"></i>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-gray-900">Contact: 9876543210</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="bg-white rounded-lg shadow overflow-hidden transition-all duration-300 card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <img class="h-48 w-full object-cover" src="http://static.photos/office/640x360/2" alt="Found item">
+                    <div class="p-6">
+                        <h3 class="text-lg font-medium text-gray-900">Notebook</h3>
+                        <p class="mt-1 text-sm text-gray-500">Found: 1 day ago</p>
+                        <p class="mt-2 text-gray-600">Blue spiral notebook with "Computer Science" written on cover, found in B-block.</p>
+                        <div class="mt-4 flex items-center">
+                            <div class="flex-shrink-0">
+                                <i data-feather="user" class="h-5 w-5 text-gray-400"></i>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-gray-900">Contact: 8765432109</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="bg-white rounded-lg shadow overflow-hidden transition-all duration-300 card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <img class="h-48 w-full object-cover" src="http://static.photos/education/640x360/3" alt="Found item">
+                    <div class="p-6">
+                        <h3 class="text-lg font-medium text-gray-900">Calculator</h3>
+                        <p class="mt-1 text-sm text-gray-500">Found: 3 days ago</p>
+                        <p class="mt-2 text-gray-600">Casio scientific calculator, found in the library.</p>
+                        <div class="mt-4 flex items-center">
+                            <div class="flex-shrink-0">
+                                <i data-feather="user" class="h-5 w-5 text-gray-400"></i>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-gray-900">Contact: 7654321098</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-10 text-center">
+                <a href="unclaimed.html" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
+                    View All Unclaimed Items
+                    <i data-feather="arrow-right" class="ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+                <div class="space-y-8 xl:col-span-1">
+                    <div class="flex items-center">
+                        <i data-feather="box" class="h-8 w-8 text-indigo-500"></i>
+                        <span class="ml-2 text-xl font-bold text-white">Lost & Found</span>
+                    </div>
+                    <p class="text-gray-300 text-base">
+                        Jyothi Engineering College
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-gray-300">
+                            <i data-feather="facebook"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gray-300">
+                            <i data-feather="twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gray-300">
+                            <i data-feather="instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
+                    <div class="md:grid md:grid-cols-2 md:gap-8">
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">
+                                Quick Links
+                            </h3>
+                            <ul class="mt-4 space-y-4">
+                                <li>
+                                    <a href="index.html" class="text-base text-gray-400 hover:text-white">
+                                        Home
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="report-lost.html" class="text-base text-gray-400 hover:text-white">
+                                        Report Lost
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="report-found.html" class="text-base text-gray-400 hover:text-white">
+                                        Report Found
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="unclaimed.html" class="text-base text-gray-400 hover:text-white">
+                                        Unclaimed Items
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-12 md:mt-0">
+                            <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">
+                                Support
+                            </h3>
+                            <ul class="mt-4 space-y-4">
+                                <li>
+                                    <a href="#" class="text-base text-gray-400 hover:text-white">
+                                        Privacy Policy
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-400 hover:text-white">
+                                        Terms of Service
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-400 hover:text-white">
+                                        Contact Admin
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-700 pt-8">
+                <p class="text-base text-gray-400 text-center">
+                    &copy; 2023 Lost and Found, Jyothi Engineering College. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Initialize AOS and Feather Icons
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
+            });
+            feather.replace();
+        });
+    </script>
+    <!-- Dark Mode, Image Upload & Utilities -->
+    <script src="js/utils.js"></script>
+</body>
+</html>

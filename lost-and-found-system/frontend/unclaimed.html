@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unclaimed Items | Lost and Found</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <!-- Dark Mode & Responsive Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i data-feather="box" class="h-8 w-8 text-indigo-600"></i>
+                        <span class="ml-2 text-xl font-bold text-gray-900">Lost & Found</span>
+                    </div>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <a href="index.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Home</a>
+                    <a href="report-lost.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Report Lost</a>
+                    <a href="report-found.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Report Found</a>
+                    <a href="lost-items.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Lost Items</a>
+                    <a href="unclaimed.html" class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Unclaimed Items</a>
+                </div>
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100" id="mobile-menu-button">
+                        <i data-feather="menu"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="sm:hidden hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="index.html" class="border-transparent text-gray-500 hover:bg-gray-50 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Home</a>
+                <a href="report-lost.html" class="border-transparent text-gray-500 hover:bg-gray-50 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Report Lost</a>
+                <a href="report-found.html" class="border-transparent text-gray-500 hover:bg-gray-50 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Report Found</a>
+                <a href="lost-items.html" class="border-transparent text-gray-500 hover:bg-gray-50 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Lost Items</a>
+                <a href="unclaimed.html" class="bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Unclaimed Items</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="bg-gradient-to-r from-green-600 to-teal-600 text-white">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl">
+                    Unclaimed Items
+                </h1>
+                <p class="mt-4 text-xl">
+                    Items that have been found and are waiting to be claimed. Is yours here?
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search and Filter Section -->
+    <div class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
+                <!-- Search Bar -->
+                <div class="flex-1 max-w-lg">
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i data-feather="search" class="h-5 w-5 text-gray-400"></i>
+                        </div>
+                        <input type="text" id="searchInput" placeholder="Search found items..." class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                </div>
+
+                <!-- Category Filter -->
+                <div class="flex items-center space-x-2">
+                    <label for="categoryFilter" class="text-sm font-medium text-gray-700">Category:</label>
+                    <select id="categoryFilter" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                        <option value="">All Categories</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Books & Notes">Books & Notes</option>
+                        <option value="Stationery">Stationery</option>
+                        <option value="ID Cards">ID Cards</option>
+                        <option value="Bags & Wallets">Bags & Wallets</option>
+                        <option value="Clothing">Clothing</option>
+                        <option value="Keys">Keys</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2">
+                <div class="bg-green-50 overflow-hidden shadow rounded-lg">
+                    <div class="p-5">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <i data-feather="package" class="h-6 w-6 text-green-600"></i>
+                            </div>
+                            <div class="ml-5 w-0 flex-1">
+                                <dl>
+                                    <dt class="text-sm font-medium text-gray-500 truncate">Unclaimed Items</dt>
+                                    <dd class="text-2xl font-bold text-gray-900" id="unclaimedCount">0</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 overflow-hidden shadow rounded-lg">
+                    <div class="p-5">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <i data-feather="list" class="h-6 w-6 text-blue-600"></i>
+                            </div>
+                            <div class="ml-5 w-0 flex-1">
+                                <dl>
+                                    <dt class="text-sm font-medium text-gray-500 truncate">Total Found Items</dt>
+                                    <dd class="text-2xl font-bold text-gray-900" id="totalCount">0</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Items Grid -->
+    <div class="bg-gray-50 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Loading State -->
+            <div id="loadingState" class="text-center py-12">
+                <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+                <p class="mt-4 text-gray-600">Loading found items...</p>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden text-center py-12">
+                <i data-feather="inbox" class="h-16 w-16 text-gray-400 mx-auto"></i>
+                <h3 class="mt-4 text-lg font-medium text-gray-900">No unclaimed items</h3>
+                <p class="mt-2 text-gray-500">Check back later or try adjusting your filters.</p>
+                <div class="mt-6">
+                    <a href="report-found.html" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+                        <i data-feather="plus" class="mr-2 h-4 w-4"></i>
+                        Report a Found Item
+                    </a>
+                </div>
+            </div>
+
+            <!-- Items Grid -->
+            <div id="itemsGrid" class="hidden grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <!-- Items will be dynamically loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Item Detail Modal -->
+    <div id="itemModal" class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" onclick="closeModal()"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div class="mt-3 text-center sm:mt-0 sm:text-left w-full">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4" id="modalTitle">Item Details</h3>
+                            <div id="modalContent" class="mt-2"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" onclick="closeModal()" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+                <div class="space-y-8 xl:col-span-1">
+                    <div class="flex items-center">
+                        <i data-feather="box" class="h-8 w-8 text-indigo-500"></i>
+                        <span class="ml-2 text-xl font-bold text-white">Lost & Found</span>
+                    </div>
+                    <p class="text-gray-300 text-base">Jyothi Engineering College</p>
+                </div>
+                <div class="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
+                    <div>
+                        <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Quick Links</h3>
+                        <ul class="mt-4 space-y-4">
+                            <li><a href="index.html" class="text-base text-gray-400 hover:text-white">Home</a></li>
+                            <li><a href="report-lost.html" class="text-base text-gray-400 hover:text-white">Report Lost</a></li>
+                            <li><a href="report-found.html" class="text-base text-gray-400 hover:text-white">Report Found</a></li>
+                            <li><a href="lost-items.html" class="text-base text-gray-400 hover:text-white">Lost Items</a></li>
+                            <li><a href="unclaimed.html" class="text-base text-gray-400 hover:text-white">Unclaimed Items</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-700 pt-8">
+                <p class="text-base text-gray-400 text-center">
+                    &copy; 2024 Lost and Found, Jyothi Engineering College. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:3000/api';
+        let allItems = [];
+
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+            AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
+            loadFoundItems();
+
+            document.getElementById('searchInput').addEventListener('input', filterItems);
+            document.getElementById('categoryFilter').addEventListener('change', filterItems);
+        });
+
+        async function loadFoundItems() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/found-items?status=unclaimed`);
+                const data = await response.json();
+
+                if (data.success) {
+                    allItems = data.data;
+                    displayItems(allItems);
+                    updateStatistics(allItems);
+                }
+            } catch (error) {
+                console.error('Error loading items:', error);
+                showError();
+            }
+        }
+
+        function displayItems(items) {
+            const loadingState = document.getElementById('loadingState');
+            const emptyState = document.getElementById('emptyState');
+            const itemsGrid = document.getElementById('itemsGrid');
+
+            loadingState.classList.add('hidden');
+
+            if (items.length === 0) {
+                emptyState.classList.remove('hidden');
+                itemsGrid.classList.add('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            itemsGrid.classList.remove('hidden');
+            itemsGrid.innerHTML = '';
+
+            items.forEach((item, index) => {
+                const itemCard = createItemCard(item, index);
+                itemsGrid.innerHTML += itemCard;
+            });
+
+            feather.replace();
+        }
+
+        function createItemCard(item, index) {
+            const dateStr = new Date(item.date_found).toLocaleDateString('en-US', { 
+                year: 'numeric', month: 'short', day: 'numeric' 
+            });
+            const daysAgo = Math.floor((new Date() - new Date(item.date_found)) / (1000 * 60 * 60 * 24));
+
+            return `
+                <div class="bg-white rounded-lg shadow overflow-hidden transition-all duration-300 card-hover" data-aos="fade-up" data-aos-delay="${index * 50}">
+                    ${item.image_url ? `<img class="h-48 w-full object-cover" src="${item.image_url}" alt="${item.item_name}" onerror="this.style.display='none'">` : ''}
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-semibold text-gray-900">${item.item_name}</h3>
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                                Unclaimed
+                            </span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800">
+                                ${item.category}
+                            </span>
+                        </div>
+
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-2">${item.description}</p>
+
+                        <div class="space-y-2 text-sm text-gray-500">
+                            <div class="flex items-center">
+                                <i data-feather="calendar" class="h-4 w-4 mr-2"></i>
+                                <span>Found: ${dateStr} (${daysAgo} days ago)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-feather="map-pin" class="h-4 w-4 mr-2"></i>
+                                <span>${item.location_found}</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 pt-4 border-t border-gray-200">
+                            <button onclick="showItemDetails(${item.id})" class="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700">
+                                <i data-feather="eye" class="mr-2 h-4 w-4"></i>
+                                View Contact Info
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        async function showItemDetails(itemId) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/found-items/${itemId}`);
+                const data = await response.json();
+
+                if (data.success) {
+                    const item = data.data;
+                    const modal = document.getElementById('itemModal');
+                    const modalContent = document.getElementById('modalContent');
+
+                    const dateStr = new Date(item.date_found).toLocaleDateString('en-US', { 
+                        year: 'numeric', month: 'long', day: 'numeric' 
+                    });
+
+                    modalContent.innerHTML = `
+                        <div class="space-y-4">
+                            ${item.image_url ? `<img src="${item.image_url}" alt="${item.item_name}" class="w-full h-48 object-cover rounded-lg" onerror="this.style.display='none'">` : ''}
+                            
+                            <div>
+                                <h4 class="text-lg font-medium text-gray-900">${item.item_name}</h4>
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800 mt-2">
+                                    ${item.category}
+                                </span>
+                            </div>
+
+                            <div>
+                                <h5 class="text-sm font-medium text-gray-700 mb-1">Description</h5>
+                                <p class="text-gray-600">${item.description}</p>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <h5 class="text-sm font-medium text-gray-700 mb-1">Date Found</h5>
+                                    <p class="text-gray-600">${dateStr}</p>
+                                </div>
+                                <div>
+                                    <h5 class="text-sm font-medium text-gray-700 mb-1">Location</h5>
+                                    <p class="text-gray-600">${item.location_found}</p>
+                                </div>
+                            </div>
+
+                            <div class="border-t pt-4">
+                                <h5 class="text-sm font-medium text-gray-700 mb-2">Finder's Contact Information</h5>
+                                <div class="bg-green-50 rounded-lg p-4 space-y-2">
+                                    <div class="flex items-center">
+                                        <i data-feather="user" class="h-4 w-4 mr-2 text-gray-500"></i>
+                                        <span class="text-gray-700">${item.finder_name}</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i data-feather="phone" class="h-4 w-4 mr-2 text-gray-500"></i>
+                                        <a href="tel:${item.contact_number}" class="text-green-600 hover:text-green-800">${item.contact_number}</a>
+                                    </div>
+                                    ${item.email ? `
+                                        <div class="flex items-center">
+                                            <i data-feather="mail" class="h-4 w-4 mr-2 text-gray-500"></i>
+                                            <a href="mailto:${item.email}" class="text-green-600 hover:text-green-800">${item.email}</a>
+                                        </div>
+                                    ` : ''}
+                                    ${item.student_id ? `
+                                        <div class="flex items-center">
+                                            <i data-feather="credit-card" class="h-4 w-4 mr-2 text-gray-500"></i>
+                                            <span class="text-gray-700">ID: ${item.student_id}</span>
+                                        </div>
+                                    ` : ''}
+                                </div>
+                            </div>
+
+                            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                                <div class="flex">
+                                    <i data-feather="info" class="h-5 w-5 text-blue-600 mr-2"></i>
+                                    <div>
+                                        <h5 class="text-sm font-medium text-blue-800">Is this yours?</h5>
+                                        <p class="text-sm text-blue-700 mt-1">Contact the finder using the information above to arrange for collection.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+                    modal.classList.remove('hidden');
+                    feather.replace();
+                }
+            } catch (error) {
+                console.error('Error loading item details:', error);
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('itemModal').classList.add('hidden');
+        }
+
+        function filterItems() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const categoryFilter = document.getElementById('categoryFilter').value;
+
+            let filteredItems = allItems.filter(item => {
+                const matchesSearch = item.item_name.toLowerCase().includes(searchTerm) || 
+                                    item.description.toLowerCase().includes(searchTerm);
+                const matchesCategory = !categoryFilter || item.category === categoryFilter;
+
+                return matchesSearch && matchesCategory;
+            });
+
+            displayItems(filteredItems);
+        }
+
+        function updateStatistics(items) {
+            const unclaimedCount = items.filter(item => item.status === 'unclaimed').length;
+            document.getElementById('unclaimedCount').textContent = unclaimedCount;
+            document.getElementById('totalCount').textContent = items.length;
+        }
+
+        function showError() {
+            const loadingState = document.getElementById('loadingState');
+            loadingState.innerHTML = `
+                <div class="text-center py-12">
+                    <i data-feather="alert-circle" class="h-16 w-16 text-red-400 mx-auto"></i>
+                    <h3 class="mt-4 text-lg font-medium text-gray-900">Unable to load items</h3>
+                    <p class="mt-2 text-gray-500">Please ensure the backend server is running.</p>
+                    <button onclick="location.reload()" class="mt-4 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+                        <i data-feather="refresh-cw" class="mr-2 h-4 w-4"></i>
+                        Retry
+                    </button>
+                </div>
+            `;
+            feather.replace();
+        }
+    </script>
+    <!-- Dark Mode, Image Upload & Utilities -->
+    <script src="js/utils.js"></script>
+</body>
+</html>
